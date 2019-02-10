@@ -7,13 +7,13 @@ A GitHub Action for [Kustomize](https://github.com/kubernetes-sigs/kustomize/). 
 ```hcl
 action "kustomize build" {
   needs = "kube config"
-  uses = "urcomputeringpal/actions-kubeconfig@master"
+  uses = "urcomputeringpal/actions-kustomize@master"
   args = "build | tee /tmp/out"
 }
 
 action "kubectl apply" {
   needs = "kustomize build"
-  uses = "urcomputeringpal/actions-kubeconfig@master"
+  uses = "urcomputeringpal/actions-kustomize@master"
   runs = "/bin/bash -c"
   args = ["kubectl apply -f /tmp/out"]
 }
