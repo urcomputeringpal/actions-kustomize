@@ -8,13 +8,13 @@ A GitHub Action for [Kustomize](https://github.com/kubernetes-sigs/kustomize/). 
 action "kustomize build" {
   needs = "kube config"
   uses = "urcomputeringpal/actions-kustomize@master"
-  args = "build | tee /tmp/out"
+  args = "build | tee $HOME/yaml"
 }
 
 action "kubectl apply" {
   needs = "kustomize build"
   uses = "urcomputeringpal/actions-kustomize@master"
   runs = "/bin/bash -c"
-  args = ["kubectl apply -f /tmp/out"]
+  args = ["kubectl apply -f $HOME/yaml"]
 }
 ```
